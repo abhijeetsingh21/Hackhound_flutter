@@ -4,6 +4,7 @@ import 'package:flutter_billing_app/DelhiHotelPage.dart';
 import 'package:flutter_billing_app/SuccessPage.dart';
 import 'Style.dart';
 import 'HotelPage.dart';
+import 'PizzeriaHotelPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MyHomePage(),
         '/DelhiHotelPage': (context) => DelhiHotelPage(),
+        '/PizzeriaPage': (context) => PizzeriaHotelPage(),
         '/HotelPage': (context) => HotelPage(),
         '/SuccessPage': (context) => SuccessPage(),
         '/CartPage': (context) => CartPage()
@@ -422,7 +424,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/HotelPage');
+                      Navigator.pushNamed(context, '/PizzeriaPage');
                     },
                     child: placesWidget("hotel2", "Pizzeria")),
                 const SizedBox(

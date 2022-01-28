@@ -64,7 +64,7 @@ class _hotelPageState extends State<hotelPage> {
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                const Text("Restaurant", style: TextStyle(
+                                const Text("Delhi Restaurant", style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 20
@@ -130,7 +130,7 @@ class _hotelPageState extends State<hotelPage> {
                           ],
                         ),
                         const SizedBox(height: 20,),
-                        placesWidget("food1", "Sushi Platter"),
+                        placesWidget("cholebhatoore", "Chole Bhatoore"),
                         const SizedBox(height: 20,),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -154,10 +154,10 @@ class _hotelPageState extends State<hotelPage> {
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
-                              dishWidget("sushi", "Row Sushi", "5 Sushis served in a row"),
-                              dishWidget("suchi2", "Prato Sushi", "5 Sushis served in a row"),
-                              dishWidget("sushi3", "Sushi Box", "5 Sushis served in a row"),
-                              dishWidget("sushi4", "Row Sushi", "5 Sushis served in a row"),
+                              dishWidget("boiled_momos", "Boiled Momo", "boiled momo served in a row"),
+                              dishWidget("chickentandoori", "Chicken Tandoori", "chicken tandoori served in a row"),
+                              dishWidget("sahipaneer", "Sahi Paneer", "sahi paneer served in a row"),
+                              dishWidget("fried_nepali_momo", "Fried Nepali Momo", "fried neapali momo served in a row"),
                             ],
                           ),
                         )

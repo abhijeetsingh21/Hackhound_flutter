@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'CartPage.dart';
 import 'Style.dart';
 
-class HotelPage extends StatelessWidget {
+class HotDogCornerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -77,7 +77,7 @@ class _hotelPageState extends State<hotelPage> {
                                   height: 20,
                                 ),
                                 const Text(
-                                  "Restaurant",
+                                  "Hot Dog Corner",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w700,
@@ -175,7 +175,7 @@ class _hotelPageState extends State<hotelPage> {
                         const SizedBox(
                           height: 20,
                         ),
-                        placesWidget("food1", "Sushi Platter"),
+                        placesWidget("hotdog", "Hot Dog"),
                         const SizedBox(
                           height: 20,
                         ),
@@ -207,14 +207,14 @@ class _hotelPageState extends State<hotelPage> {
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
-                              dishWidget("sushi", "Row Sushi",
-                                  "5 Sushis served in a row"),
-                              dishWidget("suchi2", "Prato Sushi",
-                                  "5 Sushis served in a row"),
-                              dishWidget("sushi3", "Sushi Box",
-                                  "5 Sushis served in a row"),
-                              dishWidget("sushi4", "Row Sushi",
-                                  "5 Sushis served in a row"),
+                              dishWidget("frenchfries", "French Fries",
+                                  "frenchcries served in a row"),
+                              dishWidget("pepperoni-pizza", "Pepperoni Pizza",
+                                  "pepperonipizza served in a row"),
+                              dishWidget("subway", "Subway",
+                                  "subway served in a row"),
+                              dishWidget("cheeseburger", "Cheese Burger",
+                                  "cheeseburger served in a row"),
                             ],
                           ),
                         )
@@ -382,7 +382,7 @@ class _hotelPageState extends State<hotelPage> {
                 ],
               ),
               const Text(
-                "Lorem ipsum sits dolar amet is for publishing",
+                "Rating",
                 style: TextStyle(fontSize: 12),
               )
             ],

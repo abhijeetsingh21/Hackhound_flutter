@@ -3,7 +3,7 @@ import 'package:flutter_billing_app/CartPage.dart';
 import 'package:flutter_billing_app/DelhiHotelPage.dart';
 import 'package:flutter_billing_app/SuccessPage.dart';
 import 'Style.dart';
-import 'HotelPage.dart';
+import 'HotDogCorner.dart';
 import 'PizzeriaHotelPage.dart';
 
 void main() {
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => MyHomePage(),
         '/DelhiHotelPage': (context) => DelhiHotelPage(),
         '/PizzeriaPage': (context) => PizzeriaHotelPage(),
-        '/HotelPage': (context) => HotelPage(),
+        '/HotelPage': (context) => HotDogCornerPage(),
         '/SuccessPage': (context) => SuccessPage(),
         '/CartPage': (context) => CartPage()
       },

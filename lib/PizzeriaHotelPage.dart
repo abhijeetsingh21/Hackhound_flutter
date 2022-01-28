@@ -115,7 +115,7 @@ class _hotelPageState extends State<hotelPage> {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            const Text("Today Special", style: const TextStyle(
+                            const Text("Today's Special", style: const TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.w700
                             ),),
@@ -130,8 +130,8 @@ class _hotelPageState extends State<hotelPage> {
                           ],
                         ),
                         const SizedBox(height: 20,),
-                        placesWidget("neapolianPizza", "Sushi Platter"),
-                        const SizedBox(height: 20,),
+                        placesWidget("neapolianPizza", "Nepolian Pizza"),
+                        const SizedBox(height: 20),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -154,10 +154,10 @@ class _hotelPageState extends State<hotelPage> {
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
-                              dishWidget("sushi", "Row Sushi", "5 Sushis served in a row"),
-                              dishWidget("suchi2", "Prato Sushi", "5 Sushis served in a row"),
-                              dishWidget("sushi3", "Sushi Box", "5 Sushis served in a row"),
-                              dishWidget("sushi4", "Row Sushi", "5 Sushis served in a row"),
+                              dishWidget("californiapizza", "California Pizza", "5 California Pizza served in a row"),
+                              dishWidget("chicago", "Chicago Pizza", "5 Chicago Pizza served in a row"),
+                              dishWidget("detropizza", "Detro Pizza", "5 Detro Pizza served in a row"),
+                              dishWidget("pizzasandwich", "Pizzasandwich", "5 Pizzasandwich served in a row"),
                             ],
                           ),
                         )
@@ -296,7 +296,7 @@ class _hotelPageState extends State<hotelPage> {
                   const Icon(Icons.star, size: 20, color: Colors.orange,),
                 ],
               ),
-              const Text("Lorem ipsum sits dolar amet is for publishing", style: TextStyle(
+              const Text("Rating", style: TextStyle(
                   fontSize: 12
               ),)
             ],

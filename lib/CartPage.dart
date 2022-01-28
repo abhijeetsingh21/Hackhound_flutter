@@ -26,302 +26,272 @@ class cartPage extends StatefulWidget {
 class _cartPageState extends State<cartPage> {
   int quantityPlatter = 0;
   int quantitySushi = 0;
+  int total = 0;
   double tax = 0;
   double deliveryCharges = 0;
   double totalAmount = 0;
+  double discount = 0;
+  int quantity = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                  color: blue,
-                  image: const DecorationImage(
-                      image: AssetImage("asset/images/hotelBig.png"),
-                      fit: BoxFit.cover),
-                  borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(40),
-                      bottomRight: Radius.circular(40))),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        icon: const Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 15,
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        const Text(
+                          "Your Cart",
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.w700),
                         ),
-                        onPressed: () {},
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.search,
-                          color: Colors.white,
+                        const SizedBox(
+                          width: 10,
                         ),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 100,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            height: 20,
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 20),
+                            height: 0.5,
+                            color: Colors.grey,
                           ),
-                          const Text(
-                            "Yoshimasa Sushi",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: const [
-                              Icon(
-                                Icons.star,
-                                color: Colors.white,
-                              ),
-                              Icon(
-                                Icons.star,
-                                color: Colors.white,
-                              ),
-                              Icon(
-                                Icons.star,
-                                color: Colors.white,
-                              ),
-                              Icon(
-                                Icons.star,
-                                color: Colors.white,
-                              ),
-                              Icon(
-                                Icons.star,
-                                color: Colors.white,
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    placesWidget("", "Row Platter", quantityPlatter),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    placesWidget("suchi2", "Sushi Platter", quantitySushi),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: Row(
+                            children: [
+                              const Text(
+                                "Total ( ",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700, fontSize: 18),
                               ),
                               Text(
-                                " 250 Reviews",
+                                (quantitySushi + quantityPlatter).toString(),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700, fontSize: 18),
+                              ),
+                              const Text(
+                                " items )",
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 13),
-                              )
+                                    fontWeight: FontWeight.w700, fontSize: 18),
+                              ),
                             ],
-                          )
-                        ],
-                      ),
-                      Container(
-                        height: 70,
-                        width: 70,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.white),
-                        child: const Center(
-                          child: Icon(
-                            Icons.favorite,
-                            color: Colors.redAccent,
-                            size: 35,
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Text(
-                    "Lorem ipsum dollar sits amet is used in print industry",
-                    style: TextStyle(color: Colors.white, fontSize: 12),
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      const Text(
-                        "Your Cart",
-                        style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.w700),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 20),
-                          height: 0.5,
-                          color: Colors.grey,
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  placesWidget("", "Row Platter", quantityPlatter),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  placesWidget("suchi2", "Sushi Platter", quantitySushi),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        "Total (",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 18),
-                      ),
-                      Text(
-                        "\$45",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700, fontSize: 16),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        "+Taxes",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.grey),
-                      ),
-                      Text(
-                        "\$2.1",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.grey),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        "+Delivery Charges",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.grey),
-                      ),
-                      Text(
-                        "\$3.1",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.grey),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        "Discounts",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.grey),
-                      ),
-                      Text(
-                        "-\$6.1",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.grey),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        "Total Payable",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18,
-                        ),
-                      ),
-                      Text(
-                        "\$102",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Colors.grey),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Text(
-                    "Have a Promo Code?",
-                    style: TextStyle(color: blue),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  InkWell(
-                    onTap: openSuccessPage,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 15, horizontal: 50),
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(40)),
-                        color: greenBtn,
-                      ),
-                      child: const Text(
-                        "Check Out",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w700),
-                      ),
+                        Container(
+                          child: Row(
+                            children: [
+                              const Text(
+                                "\$",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700, fontSize: 16),
+                              ),
+                              Text(
+                                total.toString(),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w700, fontSize: 16),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
                     ),
-                  )
-                ],
-              ),
-            )
-          ],
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "+Taxes",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.grey),
+                        ),
+                        Container(
+                          child: Row(
+                            children: [
+                              const Text(
+                                "\$",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Colors.grey),
+                              ),
+                              Text(
+                                tax.toStringAsFixed(2),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Colors.grey),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "+Delivery Charges",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.grey),
+                        ),
+                        Container(
+                          child: Row(
+                            children: [
+                              const Text(
+                                "\$",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Colors.grey),
+                              ),
+                              Text(
+                                deliveryCharges.toStringAsFixed(2),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Colors.grey),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "Discounts",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.grey),
+                        ),
+                        Container(
+                          child: Row(
+                            children: [
+                              const Text(
+                                "-\$",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Colors.grey),
+                              ),
+                              Text(
+                                discount.toStringAsFixed(2),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Colors.grey),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "Total Payable",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 18,
+                          ),
+                        ),
+                        Container(
+                          child: Row(
+                            children: [
+                              const Text(
+                                "\$",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Colors.grey),
+                              ),
+                              Text(
+                                totalAmount.toStringAsFixed(2),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Colors.grey),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    Text(
+                      "Have a Promo Code?",
+                      style: TextStyle(color: blue),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    InkWell(
+                      onTap: openSuccessPage,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 50),
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(40)),
+                          color: greenBtn,
+                        ),
+                        child: const Text(
+                          "Check Out",
+                          style: TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -408,18 +378,49 @@ class _cartPageState extends State<cartPage> {
                     icon: FontAwesomeIcons.plus,
                     ontap: () {
                       setState(() {
-                        if (quantity < 10) {
-                          quantity++;
+                        if (name == "Row Platter") {
+                          if (quantityPlatter < 10) {
+                            quantityPlatter++;
+                          }
                         }
+                        if (name == "Sushi Platter") {
+                          if (quantitySushi < 10) {
+                            quantitySushi++;
+                          }
+                        }
+                        total = (5 * quantityPlatter + 4 * quantitySushi);
+                        tax = (1.5 * total) / 100;
+                        deliveryCharges =
+                            (0.5 * (quantitySushi + quantityPlatter));
+                        if ((quantityPlatter + quantitySushi) > 4) {
+                          discount = (1.0 * total) / 100;
+                        }
+                        totalAmount =
+                            (total + tax + deliveryCharges - discount);
                       });
                     }),
                 RoundIconButton(
                   icon: FontAwesomeIcons.minus,
                   ontap: () {
                     setState(() {
-                      if (quantity > 0) {
-                        quantity--;
+                      if (name == "Row Platter") {
+                        if (quantityPlatter > 0) {
+                          quantityPlatter--;
+                        }
                       }
+                      if (name == "Sushi Platter") {
+                        if (quantitySushi > 0) {
+                          quantitySushi--;
+                        }
+                      }
+                      total = (5 * quantityPlatter + 4 * quantitySushi);
+                      tax = (1.5 * total) / 100;
+                      deliveryCharges =
+                          (0.5 * (quantitySushi + quantityPlatter));
+                      if ((quantityPlatter + quantitySushi) > 4) {
+                        discount = (1.0 * total) / 100;
+                      }
+                      totalAmount = (total + tax + deliveryCharges - discount);
                     });
                   },
                 ),

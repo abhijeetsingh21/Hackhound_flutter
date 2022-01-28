@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_billing_app/CartPage.dart';
+import 'package:flutter_billing_app/DelhiHotelPage.dart';
+import 'package:flutter_billing_app/SuccessPage.dart';
 import 'Style.dart';
 import 'HotelPage.dart';
 
@@ -13,7 +16,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'mont'),
-      home: MyHomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyHomePage(),
+        '/DelhiHotelPage': (context) => DelhiHotelPage(),
+        '/HotelPage': (context) => HotelPage(),
+        '/SuccessPage': (context) => SuccessPage(),
+        '/CartPage': (context) => CartPage()
+      },
     );
   }
 }
@@ -260,28 +270,28 @@ class _MyHomePageState extends State<MyHomePage> {
                                   height: 5,
                                 ),
                                 Row(
-                                  children: [
+                                  children: const [
                                     Icon(
                                       Icons.star,
                                       color: Colors.white,
                                       size: 14,
                                     ),
-                                    const Icon(
+                                    Icon(
                                       Icons.star,
                                       color: Colors.white,
                                       size: 14,
                                     ),
-                                    const Icon(
+                                    Icon(
                                       Icons.star,
                                       color: Colors.white,
                                       size: 14,
                                     ),
-                                    const Icon(
+                                    Icon(
                                       Icons.star,
                                       color: Colors.white,
                                       size: 14,
                                     ),
-                                    const Icon(
+                                    Icon(
                                       Icons.star,
                                       color: Colors.white,
                                       size: 14,
@@ -337,28 +347,28 @@ class _MyHomePageState extends State<MyHomePage> {
                                       height: 5,
                                     ),
                                     Row(
-                                      children: [
-                                        const Icon(
+                                      children: const [
+                                        Icon(
                                           Icons.star,
                                           color: Colors.white,
                                           size: 14,
                                         ),
-                                        const Icon(
+                                        Icon(
                                           Icons.star,
                                           color: Colors.white,
                                           size: 14,
                                         ),
-                                        const Icon(
+                                        Icon(
                                           Icons.star,
                                           color: Colors.white,
                                           size: 14,
                                         ),
-                                        const Icon(
+                                        Icon(
                                           Icons.star,
                                           color: Colors.white,
                                           size: 14,
                                         ),
-                                        const Icon(
+                                        Icon(
                                           Icons.star,
                                           color: Colors.white,
                                           size: 14,
@@ -401,15 +411,28 @@ class _MyHomePageState extends State<MyHomePage> {
                 const SizedBox(
                   height: 20,
                 ),
-                placesWidget("hotel1", "Delhi Restaurant"),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/DelhiHotelPage');
+                  },
+                  child: placesWidget("hotel1", "Delhi Restaurant"),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
-                placesWidget("hotel2", "Pizzeria"),
+                GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/HotelPage');
+                    },
+                    child: placesWidget("hotel2", "Pizzeria")),
                 const SizedBox(
                   height: 20,
                 ),
-                placesWidget("hotel3", "Hot Dog Corner"),
+                GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/HotelPage');
+                    },
+                    child: placesWidget("hotel3", "Hot Dog Corner")),
               ],
             ),
           ),
@@ -438,28 +461,28 @@ class _MyHomePageState extends State<MyHomePage> {
                     const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               Row(
-                children: [
-                  const Icon(
+                children: const [
+                  Icon(
                     Icons.star,
                     size: 20,
                     color: Colors.orange,
                   ),
-                  const Icon(
+                  Icon(
                     Icons.star,
                     size: 20,
                     color: Colors.orange,
                   ),
-                  const Icon(
+                  Icon(
                     Icons.star,
                     size: 20,
                     color: Colors.orange,
                   ),
-                  const Icon(
+                  Icon(
                     Icons.star,
                     size: 20,
                     color: Colors.orange,
                   ),
-                  const Icon(
+                  Icon(
                     Icons.star,
                     size: 20,
                     color: Colors.orange,
@@ -468,33 +491,12 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const Text(
                 "Rating",
-                style: const TextStyle(fontSize: 12),
+                style: TextStyle(fontSize: 12),
               )
             ],
           ),
         ),
-        InkWell(
-          onTap: openHotelPage,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(40)),
-                color: greenBtn),
-            child: const Text(
-              "Order Now",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700),
-            ),
-          ),
-        )
       ],
     );
-  }
-
-  void openHotelPage() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => HotelPage()));
   }
 }

@@ -168,55 +168,7 @@ class _hotelPageState extends State<hotelPage> {
               ),
             ),
           ),
-          Positioned(
-            bottom: 30,
-            left: 0,
-            right: 0,
-            child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      InkWell(
-                        onTap: openCartPage,
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                          decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(const Radius.circular(25)),
-                              color: greenBtn
-                          ),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(Icons.add_shopping_cart,
-                                  color: Colors.white,
-                                  size: 18,),
-                                const Text(" CART", style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w700
-                                ),)
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 5),
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
-                        decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(bottomRight: Radius.circular(20), bottomLeft: Radius.circular(20)),
-                            color: greenBtn.withOpacity(0.7)
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-          )
+
         ],
       ),
     );

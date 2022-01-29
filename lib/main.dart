@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.red,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      "Today's",
+                      "Today's Special",
                       style:
                           TextStyle(fontSize: 26, fontWeight: FontWeight.w700),
                     ),
@@ -91,33 +91,47 @@ class _MyHomePageState extends State<MyHomePage> {
                             child: Center(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: const [
-                                  Icon(
-                                    Icons.add_shopping_cart,
-                                    color: Colors.white,
-                                    size: 18,
+                                children:  [
+                                  InkWell(
+                                    onTap: openCartPage,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                                      decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.all(const Radius.circular(25)),
+                                          color: greenBtn
+                                      ),
+                                      child: Center(
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            const Icon(Icons.add_shopping_cart,
+                                              color: Colors.white,
+                                              size: 18,),
+                                            const Text(" CART", style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 13,
+                                                fontWeight: FontWeight.w700
+
+                                            ),)
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                  Text(
-                                    " CART",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w700),
-                                  )
                                 ],
                               ),
                             ),
                           ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 40, vertical: 5),
-                            margin: const EdgeInsets.symmetric(horizontal: 10),
-                            decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                    bottomRight: Radius.circular(20),
-                                    bottomLeft: const Radius.circular(20)),
-                                color: greenBtn.withOpacity(0.7)),
-                          )
+                          // Container(
+                          //   padding: const EdgeInsets.symmetric(
+                          //       horizontal: 40, vertical: 5),
+                          //   margin: const EdgeInsets.symmetric(horizontal: 10),
+                          //   decoration: BoxDecoration(
+                          //       borderRadius: const BorderRadius.only(
+                          //           bottomRight: Radius.circular(20),
+                          //           bottomLeft: const Radius.circular(20)),
+                          //       color: greenBtn.withOpacity(0.7)),
+                          // )
                         ],
                       ),
                     )
@@ -500,5 +514,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ],
     );
+  }
+  void openCartPage()
+  {
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>CartPage()));
   }
 }

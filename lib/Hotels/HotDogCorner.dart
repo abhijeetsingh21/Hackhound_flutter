@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'CartPage.dart';
-import 'Style.dart';
+import '../CreatedWidgets/Style.dart';
+import 'package:flutter_billing_app/CreatedWidgets/fiveStar.dart';
+import 'package:flutter_billing_app/CreatedWidgets/dishWidget.dart';
+import 'package:flutter_billing_app/CreatedWidgets/placesWidget.dart';
 
 class HotDogCornerPage extends StatelessWidget {
+  const HotDogCornerPage({Key? key}) : super(key: key);
+  static const String id = 'hotDogPage';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,8 +41,8 @@ class _hotelPageState extends State<hotelPage> {
                             image: AssetImage("asset/images/hotelBig.png"),
                             fit: BoxFit.cover),
                         borderRadius: const BorderRadius.only(
-                            bottomLeft: const Radius.circular(40),
-                            bottomRight: const Radius.circular(40))),
+                            bottomLeft: Radius.circular(40),
+                            bottomRight: Radius.circular(40))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -88,28 +92,9 @@ class _hotelPageState extends State<hotelPage> {
                                 ),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    const Icon(
-                                      Icons.star,
-                                      color: Colors.white,
-                                    ),
-                                    const Icon(
-                                      Icons.star,
-                                      color: Colors.white,
-                                    ),
-                                    const Icon(
-                                      Icons.star,
-                                      color: Colors.white,
-                                    ),
-                                    const Icon(
-                                      Icons.star,
-                                      color: Colors.white,
-                                    ),
-                                    const Icon(
-                                      Icons.star,
-                                      color: Colors.white,
-                                    ),
-                                    const Text(
+                                  children: const [
+                                    FiveStar(color: Colors.white, size: 25),
+                                    Text(
                                       " 250 Reviews",
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 13),
@@ -124,7 +109,7 @@ class _hotelPageState extends State<hotelPage> {
                               decoration: const BoxDecoration(
                                   shape: BoxShape.circle, color: Colors.white),
                               child: const Center(
-                                child: const Icon(
+                                child: Icon(
                                   Icons.favorite,
                                   color: Colors.redAccent,
                                   size: 35,
@@ -138,8 +123,7 @@ class _hotelPageState extends State<hotelPage> {
                         ),
                         const Text(
                           "Rate Us",
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 12),
+                          style: TextStyle(color: Colors.white, fontSize: 12),
                         )
                       ],
                     ),
@@ -156,7 +140,7 @@ class _hotelPageState extends State<hotelPage> {
                           children: [
                             const Text(
                               "Today Special",
-                              style: const TextStyle(
+                              style: TextStyle(
                                   fontSize: 22, fontWeight: FontWeight.w700),
                             ),
                             const SizedBox(
@@ -175,7 +159,7 @@ class _hotelPageState extends State<hotelPage> {
                         const SizedBox(
                           height: 20,
                         ),
-                        placesWidget("hotdog", "Hot Dog"),
+                        const PlacesWidget(img: 'hotdog', name: 'Hot Dog'),
                         const SizedBox(
                           height: 20,
                         ),
@@ -206,15 +190,24 @@ class _hotelPageState extends State<hotelPage> {
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
-                            children: [
-                              dishWidget("frenchfries", "French Fries",
-                                  "frenchcries served in a row"),
-                              dishWidget("pepperoni-pizza", "Pepperoni Pizza",
-                                  "pepperonipizza served in a row"),
-                              dishWidget("subway", "Subway",
-                                  "subway served in a row"),
-                              dishWidget("cheeseburger", "Cheese Burger",
-                                  "cheeseburger served in a row"),
+                            children: const [
+                              DishWidget(
+                                  img: 'frenchfries',
+                                  name: 'French Fries',
+                                  description: 'French Fries Served in a row'),
+                              DishWidget(
+                                  img: 'pepperoni-pizza',
+                                  name: 'Pepperoni Pizza',
+                                  description:
+                                      'Pepperoni Pizza served in a row'),
+                              DishWidget(
+                                  img: 'subway',
+                                  name: 'Subway',
+                                  description: 'Subway served in a row'),
+                              DishWidget(
+                                  img: 'cheeseburger',
+                                  name: 'Cheese Burger',
+                                  description: 'CheeseBurger served in a row')
                             ],
                           ),
                         )
@@ -225,136 +218,8 @@ class _hotelPageState extends State<hotelPage> {
               ),
             ),
           ),
-
         ],
       ),
     );
-  }
-
-  Container dishWidget(String img, String name, String description) {
-    return Container(
-      width: 120,
-      child: Column(
-        children: [
-          Container(
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("asset/images/$img.png"))),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "$name",
-                style:
-                    const TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Text(
-                "$description",
-                style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w500, color: black),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 7, horizontal: 20),
-                decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(30)),
-                    border: Border.all(color: black)),
-                child: const Text("+ Cart"),
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
-
-  Row placesWidget(String img, String name) {
-    return Row(
-      children: [
-        Container(
-          height: 100,
-          width: 100,
-          decoration: BoxDecoration(
-              image:
-                  DecorationImage(image: AssetImage("asset/images/$img.png"))),
-        ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "$name",
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              Row(
-                children: [
-                  const Icon(
-                    Icons.star,
-                    size: 20,
-                    color: Colors.orange,
-                  ),
-                  const Icon(
-                    Icons.star,
-                    size: 20,
-                    color: Colors.orange,
-                  ),
-                  const Icon(
-                    Icons.star,
-                    size: 20,
-                    color: Colors.orange,
-                  ),
-                  const Icon(
-                    Icons.star,
-                    size: 20,
-                    color: Colors.orange,
-                  ),
-                  const Icon(
-                    Icons.star,
-                    size: 20,
-                    color: Colors.orange,
-                  ),
-                ],
-              ),
-              const Text(
-                "Rating",
-                style: TextStyle(fontSize: 12),
-              )
-            ],
-          ),
-        ),
-        InkWell(
-          onTap: () {},
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(40)),
-                color: greenBtn),
-            child: const Text(
-              "Order Now",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700),
-            ),
-          ),
-        )
-      ],
-    );
-  }
-
-  void openCartPage() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => CartPage()));
   }
 }

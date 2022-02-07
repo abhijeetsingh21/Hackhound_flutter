@@ -1,29 +1,21 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
-import 'Style.dart';
-import 'SuccessPage.dart';
+import '../CreatedWidgets/Style.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_billing_app/CreatedWidgets/fiveStar.dart';
+import 'package:flutter_billing_app/CreatedWidgets/roundIcon.dart';
+import 'package:flutter_billing_app/AdditionalPages/SuccessPage.dart';
+import 'package:flutter_billing_app/CreatedWidgets/chargesWidget.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
+  static const String id = 'cartPage';
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: cartPage(),
-    );
-  }
+  _CartPageState createState() => _CartPageState();
 }
 
-class cartPage extends StatefulWidget {
-  const cartPage({Key? key}) : super(key: key);
-
-  @override
-  _cartPageState createState() => _cartPageState();
-}
-
-class _cartPageState extends State<cartPage> {
+class _CartPageState extends State<CartPage> {
   int quantityPlatter = 0;
   int quantitySushi = 0;
   int total = 0;
@@ -32,6 +24,7 @@ class _cartPageState extends State<cartPage> {
   double totalAmount = 0;
   double discount = 0;
   int quantity = 0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -74,7 +67,8 @@ class _cartPageState extends State<cartPage> {
                     const SizedBox(
                       height: 5,
                     ),
-                    placesWidget("cholebhatoore", "Cholebhatoore", quantitySushi),
+                    placesWidget(
+                        "cholebhatoore", "Cholebhatoore", quantitySushi),
                     const SizedBox(
                       height: 5,
                     ),
@@ -123,108 +117,20 @@ class _cartPageState extends State<cartPage> {
                     const SizedBox(
                       height: 5,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "+Taxes",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: Colors.grey),
-                        ),
-                        Container(
-                          child: Row(
-                            children: [
-                              const Text(
-                                "\$",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    color: Colors.grey),
-                              ),
-                              Text(
-                                tax.toStringAsFixed(2),
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    color: Colors.grey),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                    ChargesWidget(
+                        taxMoney: tax.toStringAsFixed(2), taxDetail: '+Taxes'),
                     const SizedBox(
                       height: 5,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "+Delivery Charges",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: Colors.grey),
-                        ),
-                        Container(
-                          child: Row(
-                            children: [
-                              const Text(
-                                "\$",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    color: Colors.grey),
-                              ),
-                              Text(
-                                deliveryCharges.toStringAsFixed(2),
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    color: Colors.grey),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                    ChargesWidget(
+                        taxMoney: deliveryCharges.toStringAsFixed(2),
+                        taxDetail: '+DeliveryCharges'),
                     const SizedBox(
                       height: 5,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "Discounts",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: Colors.grey),
-                        ),
-                        Container(
-                          child: Row(
-                            children: [
-                              const Text(
-                                "-\$",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    color: Colors.grey),
-                              ),
-                              Text(
-                                discount.toStringAsFixed(2),
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    color: Colors.grey),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                    ChargesWidget(
+                        taxMoney: discount.toStringAsFixed(2),
+                        taxDetail: '+Discounts'),
                     const SizedBox(
                       height: 5,
                     ),
@@ -270,23 +176,11 @@ class _cartPageState extends State<cartPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    InkWell(
-                      onTap: openSuccessPage,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 50),
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(40)),
-                          color: greenBtn,
-                        ),
-                        child: const Text(
-                          "Check Out",
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                    )
+                    ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, SuccessPage.id);
+                        },
+                        child: const Text('CheckOut'))
                   ],
                 ),
               )
@@ -316,35 +210,7 @@ class _cartPageState extends State<cartPage> {
                 style:
                     const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
-              Row(
-                children: const [
-                  Icon(
-                    Icons.star,
-                    size: 20,
-                    color: Colors.orange,
-                  ),
-                  Icon(
-                    Icons.star,
-                    size: 20,
-                    color: Colors.orange,
-                  ),
-                  Icon(
-                    Icons.star,
-                    size: 20,
-                    color: Colors.orange,
-                  ),
-                  Icon(
-                    Icons.star,
-                    size: 20,
-                    color: Colors.orange,
-                  ),
-                  Icon(
-                    Icons.star,
-                    size: 20,
-                    color: Colors.orange,
-                  ),
-                ],
-              ),
+              const FiveStar(color: Colors.orange, size: 20.0),
               const Text(
                 "Lorem ipsum sits dolar amet is for publishing",
                 style: TextStyle(fontSize: 12),
@@ -429,35 +295,6 @@ class _cartPageState extends State<cartPage> {
           ],
         )
       ],
-    );
-  }
-
-  void openSuccessPage() {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => SuccessPage()));
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  const RoundIconButton({Key? key, required this.icon, required this.ontap})
-      : super(key: key);
-  final IconData icon;
-  final Function ontap;
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: () {
-        ontap();
-      },
-      elevation: 0.0,
-      constraints: const BoxConstraints.tightFor(width: 28.0, height: 28.0),
-      child: Icon(
-        icon,
-        size: 15.0,
-        color: Colors.white,
-      ),
-      shape: const CircleBorder(),
-      fillColor: const Color(0xFF4C4F5E),
     );
   }
 }

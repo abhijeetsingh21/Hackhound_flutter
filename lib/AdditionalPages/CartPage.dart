@@ -70,11 +70,11 @@ class _cartPageState extends State<cartPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    placesWidget("californiapizza", "Pizza", quantityPlatter),
+                    placesWidget("", "Row Platter", quantityPlatter),
                     const SizedBox(
                       height: 5,
                     ),
-                    placesWidget("cholebhatoore", "Cholebhatoore", quantitySushi),
+                    placesWidget("suchi2", "Sushi Platter", quantitySushi),
                     const SizedBox(
                       height: 5,
                     ),
@@ -378,12 +378,12 @@ class _cartPageState extends State<cartPage> {
                     icon: FontAwesomeIcons.plus,
                     ontap: () {
                       setState(() {
-                        if (name == "Pizza") {
+                        if (name == "Row Platter") {
                           if (quantityPlatter < 10) {
                             quantityPlatter++;
                           }
                         }
-                        if (name == "Cholebhatoore") {
+                        if (name == "Sushi Platter") {
                           if (quantitySushi < 10) {
                             quantitySushi++;
                           }
@@ -403,12 +403,12 @@ class _cartPageState extends State<cartPage> {
                   icon: FontAwesomeIcons.minus,
                   ontap: () {
                     setState(() {
-                      if (name == "Pizza") {
+                      if (name == "Row Platter") {
                         if (quantityPlatter > 0) {
                           quantityPlatter--;
                         }
                       }
-                      if (name == "Cholebhatoore") {
+                      if (name == "Sushi Platter") {
                         if (quantitySushi > 0) {
                           quantitySushi--;
                         }

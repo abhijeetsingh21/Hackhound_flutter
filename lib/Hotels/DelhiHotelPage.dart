@@ -12,17 +12,17 @@ class DelhiHotelPage extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: "mont"),
-      home: hotelPage(),
+      home: HotelPage(),
     );
   }
 }
 
-class hotelPage extends StatefulWidget {
+class HotelPage extends StatefulWidget {
   @override
-  _hotelPageState createState() => _hotelPageState();
+  _HotelPageState createState() => _HotelPageState();
 }
 
-class _hotelPageState extends State<hotelPage> {
+class _HotelPageState extends State<HotelPage> {
   List<DishWidget> dishList = [];
   @override
   Widget build(BuildContext context) {

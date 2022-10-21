@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Style.dart';
+import 'package:flutter_billing_app/CreatedWidgets/Style.dart';
 import 'SuccessPage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
+  static const String id = 'cartPage';
 
   @override
   Widget build(BuildContext context) {
@@ -70,11 +71,35 @@ class _cartPageState extends State<cartPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    placesWidget("", "Row Platter", quantityPlatter),
+                    GestureDetector(
+                      child:
+                          placesWidget("food1", "Row Platter", quantityPlatter),
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  title: Text("Row Platter"),
+                                  content: Text(
+                                      "A platter is a large flat dish or plate, typically oval or circular in shape, used for serving a meal or course.In restaurant terminology, a platter is often a main dish served on a platter with one or more side dishes, such as a salad or french fries.Notable platters includes the Colombian bandeja paisa, Indian thali or Arabic mixed-meat platters."),
+                                ));
+                      },
+                    ),
                     const SizedBox(
                       height: 5,
                     ),
-                    placesWidget("suchi2", "Sushi Platter", quantitySushi),
+                    GestureDetector(
+                      child: placesWidget(
+                          "sushi3", "Sushi Platter", quantitySushi),
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  title: Text("sushi"),
+                                  content: Text(
+                                      "Sushi (すし, 寿司, 鮨, 鮓, pronounced [sɯɕiꜜ] or [sɯꜜɕi]) is a Japanese dish of prepared vinegared rice (鮨飯, sushi-meshi), usually with some sugar and salt, accompanied by a variety of ingredients (ねた, neta), such as seafood, often raw, and vegetables. Styles of sushi and its presentation vary widely, but the one key ingredient is 'sushi rice', also referred to as shari (しゃり), or sumeshi (酢飯).[1]"),
+                                ));
+                      },
+                    ),
                     const SizedBox(
                       height: 5,
                     ),

@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: const Icon(
               Icons.search,
               size: 27,
-              color: Colors.grey,
+              color: Colors.white,
             ),
             onPressed: () {},
           )
@@ -129,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Row(
                     children: [
                       Container(
-                        width: MediaQuery.of(context).size.width * 0.55,
+                        width: MediaQuery.of(context).size.width * 0.53,
                         height: 350,
                         padding: const EdgeInsets.symmetric(
                             vertical: 40, horizontal: 20),
@@ -137,12 +137,12 @@ class _MyHomePageState extends State<MyHomePage> {
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(30)),
                             color: blue,
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                   spreadRadius: 0,
-                                  offset: const Offset(0, 10),
-                                  blurRadius: 0,
-                                  color: blue.withOpacity(0.4))
+                                  offset: const Offset(5, 10),
+                                  blurRadius: 5,
+                                  color: Colors.blue)
                             ]),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -150,9 +150,10 @@ class _MyHomePageState extends State<MyHomePage> {
                             Expanded(
                               child: Container(
                                 decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            "asset/images/food1.png"))),
+                                  image: DecorationImage(
+                                    image: AssetImage("asset/images/food1.png"),
+                                  ),
+                                ),
                               ),
                             ),
                             const SizedBox(
@@ -190,7 +191,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       const SizedBox(
-                        width: 10,
+                        width: 13,
                       ),
                       Column(
                         children: [
@@ -203,12 +204,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(30)),
                                 color: green,
-                                boxShadow: [
+                                boxShadow: const[
                                   BoxShadow(
                                       spreadRadius: 0,
-                                      offset: const Offset(0, 10),
+                                      offset: const Offset(5, 10),
                                       blurRadius: 0,
-                                      color: green.withOpacity(0.4))
+                                      color: Color.fromARGB(255, 84, 211, 88)),
                                 ]),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -252,12 +253,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(30)),
                                     color: black,
-                                    boxShadow: [
+                                    boxShadow: const[
                                       BoxShadow(
                                           spreadRadius: 0,
-                                          offset: const Offset(0, 10),
+                                          offset: const Offset(5, 10),
                                           blurRadius: 0,
-                                          color: black.withOpacity(0.4))
+                                          color: Colors.black54)
                                     ]),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,

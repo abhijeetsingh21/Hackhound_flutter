@@ -28,28 +28,34 @@ class _DishWidgetState extends State<DishWidget> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Container(
-            width: 120,
-            height: 100,
+            width: MediaQuery.of(context).size.width * 0.35,
+            height: MediaQuery.of(context).size.height * 0.10,
             decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("asset/images/${widget.img}.png"))),
+              image: DecorationImage(
+                image: AssetImage("asset/images/${widget.img}.png"),
+              ),
+            ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                widget.name,
-                style:
-                    const TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+              Center(
+                child: Text(
+                  widget.name,
+                  style:
+                      const TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+                ),
               ),
               const SizedBox(
                 height: 5,
               ),
-              Text(
-                widget.description,
-                style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w500, color: black),
+              Center(
+                child: Text(
+                  widget.description,
+                  style: TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w500, color: black),
+                ),
               ),
               const SizedBox(
                 height: 5,
@@ -60,7 +66,7 @@ class _DishWidgetState extends State<DishWidget> {
                     setState(() {
                       if (color == Colors.transparent) {
                         color = Colors.green;
-                        cart = '';
+                        // cart ='' ;
                         icon = Icons.check;
                       } else {
                         color = Colors.transparent;

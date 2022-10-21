@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'CartPage.dart';
-import 'Style.dart';
+import 'AdditionalPages/CartPage.dart';
+import 'CreatedWidgets/Style.dart';
 class DelhiHotelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

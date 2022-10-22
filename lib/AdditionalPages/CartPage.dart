@@ -72,13 +72,28 @@ class _cartPageState extends State<cartPage> {
                       height: 20,
                     ),
                     GestureDetector(
-                      child:
-                          placesWidget("food1", "Row Platter", quantityPlatter),
+                      child: placesWidget(
+                          "food1",
+                          "Row Platter",
+                          quantityPlatter,
+                          "A platter is a large flat dish or plate....."),
                       onTap: () {
                         showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                                  title: Text("Row Platter"),
+                                  title: Column(
+                                    children: [
+                                      Text("Row Platter"),
+                                      Container(
+                                        width: 100.0,
+                                        height: 70.0,
+                                        child: Image(
+                                          image: AssetImage(
+                                              "asset/images/food1.png"),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                   content: Text(
                                       "A platter is a large flat dish or plate, typically oval or circular in shape, used for serving a meal or course.In restaurant terminology, a platter is often a main dish served on a platter with one or more side dishes, such as a salad or french fries.Notable platters includes the Colombian bandeja paisa, Indian thali or Arabic mixed-meat platters."),
                                 ));
@@ -89,14 +104,29 @@ class _cartPageState extends State<cartPage> {
                     ),
                     GestureDetector(
                       child: placesWidget(
-                          "sushi3", "Sushi Platter", quantitySushi),
+                          "sushi3",
+                          "Sushi Platter",
+                          quantitySushi,
+                          "Sushi Platter is a Japanese dish of.... "),
                       onTap: () {
                         showDialog(
                             context: context,
                             builder: (context) => AlertDialog(
-                                  title: Text("sushi"),
+                                  title: Column(
+                                    children: [
+                                      Text("sushi"),
+                                      Container(
+                                        width: 150.0,
+                                        height: 70.0,
+                                        child: Image(
+                                          image: AssetImage(
+                                              "asset/images/sushi3.png"),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                   content: Text(
-                                      "Sushi (すし, 寿司, 鮨, 鮓, pronounced [sɯɕiꜜ] or [sɯꜜɕi]) is a Japanese dish of prepared vinegared rice (鮨飯, sushi-meshi), usually with some sugar and salt, accompanied by a variety of ingredients (ねた, neta), such as seafood, often raw, and vegetables. Styles of sushi and its presentation vary widely, but the one key ingredient is 'sushi rice', also referred to as shari (しゃり), or sumeshi (酢飯).[1]"),
+                                      "Sushi is a Japanese dish of prepared vinegared rice, usually with some sugar and salt, accompanied by a variety of ingredients , such as seafood, often raw, and vegetables. Styles of sushi and its presentation vary widely, but the one key ingredient is 'sushi rice', also referred to as shari, or sumeshi."),
                                 ));
                       },
                     ),
@@ -322,7 +352,7 @@ class _cartPageState extends State<cartPage> {
     );
   }
 
-  Row placesWidget(String img, String name, int quantity) {
+  Row placesWidget(String img, String name, int quantity, String matter) {
     return Row(
       children: [
         Container(
@@ -370,9 +400,9 @@ class _cartPageState extends State<cartPage> {
                   ),
                 ],
               ),
-              const Text(
-                "Lorem ipsum sits dolar amet is for publishing",
-                style: TextStyle(fontSize: 12),
+              Text(
+                matter,
+                style: const TextStyle(fontSize: 12),
               )
             ],
           ),

@@ -82,7 +82,7 @@ class _HotelPageState extends State<HotelPage> {
                                   height: 20,
                                 ),
                                 const Text(
-                                  "Delhi Restaurant",
+                                  "Indo-Chinese Day",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w700,

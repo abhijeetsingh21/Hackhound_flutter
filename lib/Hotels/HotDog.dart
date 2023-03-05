@@ -81,7 +81,7 @@ class _hotelPageState extends State<hotelPage> {
                                   height: 20,
                                 ),
                                 const Text(
-                                  "Hot Dog Corner",
+                                  "Hot Dog ",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w700,

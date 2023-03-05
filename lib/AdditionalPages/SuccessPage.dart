@@ -66,7 +66,7 @@ class _SuccessPageState extends State<SuccessPage> {
                             height: 20,
                           ),
                           const Text(
-                            "Delhi Restaurant",
+                            "InterStellerIN Restaurant",
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,

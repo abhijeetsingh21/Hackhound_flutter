@@ -64,7 +64,7 @@ class _hotelPageState extends State<hotelPage> {
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                const Text("Delhi Restaurant", style: TextStyle(
+                                const Text("InterStellerIN Restaurant", style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 20

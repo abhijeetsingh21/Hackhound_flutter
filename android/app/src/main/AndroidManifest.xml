@@ -3,7 +3,7 @@
    <application
         android:usesCleartextTraffic="true"
 
-        android:label="flutter_billing_app"
+        android:label="InterStellarINN"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

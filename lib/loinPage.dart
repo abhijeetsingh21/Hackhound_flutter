@@ -55,6 +55,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   decoration: kTextFieldDecoration.copyWith(
                       hintText: 'Enter your password'),
                 ),
+                // ignore: deprecated_member_use
                 RaisedButton(
                   textColor: Colors.red,
                   onPressed: () async {

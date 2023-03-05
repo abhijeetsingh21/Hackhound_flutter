@@ -1,7 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
-import 'package:flutter_billing_app/Hotels/DelhiHotelPage.dart';
-import 'package:flutter_billing_app/Hotels/HotDogCorner.dart';
-import 'package:flutter_billing_app/Hotels/PizzeriaHotelPage.dart';
+import 'package:flutter_billing_app/Hotels/InterStellerIN.dart';
+import 'package:flutter_billing_app/Hotels/HotDog.dart';
+import 'package:flutter_billing_app/Hotels/Pizza.dart';
 import 'CreatedWidgets/fiveStar.dart';
 import 'CreatedWidgets/Style.dart';
 import 'AdditionalPages/CartPage.dart';
@@ -16,29 +18,63 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<DishWidget> dishList = [];
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            size: 27,
-          ),
-          onPressed: () {},
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.search,
-              size: 27,
-              color: Colors.white,
+      backgroundColor: Color.fromRGBO(218, 44, 67, 100),
+      floatingActionButton: FloatingActionButton(child: Expanded(
+            child: Icon(
+              Icons.qr_code,
+              size: 39,
+              color: Colors.black,
             ),
-            onPressed: () {},
-          )
+          ),
+        onPressed: (){}),
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.amber,
+        actions: [
+          Container(
+            height: 50,
+            decoration: const BoxDecoration(
+                // border: Border.all(width: 1.0),
+                // borderRadius: BorderRadius.circular(10.0),
+                ),
+            // padding: EdgeInsets.all(5.0),
+            child: SizedBox(
+              width: 100.0,
+              height: 50.0,
+              child: TextField(
+                  decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                hoverColor: Colors.green,
+              )),
+            ),
+          ),
+          
+          Expanded(
+            child: IconButton(
+              icon: Icon(Icons.shopping_cart_outlined,),
+              iconSize: 39.0,
+              onPressed: () {
+                Navigator.pushNamed(context, CartPage.id);
+              },
+              // size: 39,
+              color: Colors.black,
+            ),
+          ),
+          Expanded(
+            child: Icon(
+              Icons.person_outline_outlined,
+              size: 39,
+              color: Colors.black,
+            ),
+          ),
         ],
+        // title:
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -54,60 +90,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      "Today's Special",
+                      "Mars Special",
                       style:
                           TextStyle(fontSize: 26, fontWeight: FontWeight.w700),
                     ),
-                    Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 25, vertical: 10),
-                          decoration: BoxDecoration(
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(25)),
-                              color: greenBtn),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                InkWell(
-                                  onTap: openCartPage,
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5, vertical: 2),
-                                    decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(25)),
-                                        color: greenBtn),
-                                    child: Center(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: const [
-                                          Icon(
-                                            Icons.add_shopping_cart,
-                                            color: Colors.white,
-                                            size: 18,
-                                          ),
-                                          Text(
-                                            " CART",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w700),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
                   ],
                 ),
                 const SizedBox(
@@ -204,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(30)),
                                 color: green,
-                                boxShadow: const[
+                                boxShadow: const [
                                   BoxShadow(
                                       spreadRadius: 0,
                                       offset: const Offset(5, 10),
@@ -253,7 +239,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(30)),
                                     color: black,
-                                    boxShadow: const[
+                                    boxShadow: const [
                                       BoxShadow(
                                           spreadRadius: 0,
                                           offset: const Offset(5, 10),
@@ -303,7 +289,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     const Text(
-                      "Places",
+                      "Specials Of The Day",
                       style:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
                     ),
@@ -326,7 +312,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   onTap: () {
                     Navigator.pushNamed(context, DelhiHotelPage.id);
                   },
-                  child: placesWidget("hotel1", "Delhi Restaurant"),
+                  child: placesWidget("hotel1", "Indo-Chinese Day "),
                 ),
                 const SizedBox(
                   height: 20,
@@ -335,7 +321,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () {
                       Navigator.pushNamed(context, PizzeriaHotelPage.id);
                     },
-                    child: placesWidget("hotel2", "Pizzeria")),
+                    child: placesWidget("hotel2", "Pizza Day")),
                 const SizedBox(
                   height: 20,
                 ),
@@ -343,7 +329,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onTap: () {
                       Navigator.pushNamed(context, HotDogCornerPage.id);
                     },
-                    child: placesWidget("hotel3", "Hot Dog Corner")),
+                    child: placesWidget("hotel3", "Hot Dog Day")),
               ],
             ),
           ),

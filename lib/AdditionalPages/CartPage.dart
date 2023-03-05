@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, camel_case_types, file_names, avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:flutter_billing_app/CreatedWidgets/Style.dart';
 import 'SuccessPage.dart';
@@ -372,7 +373,7 @@ class _cartPageState extends State<cartPage> {
                     const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               Row(
-                children: const [
+                children:  const [
                   Icon(
                     Icons.star,
                     size: 20,

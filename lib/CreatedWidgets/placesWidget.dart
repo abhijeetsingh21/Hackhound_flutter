@@ -1,6 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_billing_app/CreatedWidgets/fiveStar.dart';
 import 'package:flutter_billing_app/CreatedWidgets/Style.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class PlacesWidget extends StatefulWidget {
   const PlacesWidget({Key? key, required this.img, required this.name})
@@ -12,6 +15,25 @@ class PlacesWidget extends StatefulWidget {
 }
 
 class _PlacesWidgetState extends State<PlacesWidget> {
+  void rating() {
+    RatingBar.builder(
+      initialRating: 0,
+      minRating: 0,
+      itemSize: 20.0,
+      direction: Axis.horizontal,
+      allowHalfRating: true,
+      itemCount: 5,
+      itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+      itemBuilder: (context, _) => Icon(
+        Icons.star,
+        color: Colors.amber,
+      ),
+      onRatingUpdate: (rating) {
+        print(rating);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -32,12 +54,24 @@ class _PlacesWidgetState extends State<PlacesWidget> {
                 style:
                     const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
-              const FiveStar(
-                color: Colors.orange,
-                size: 20.0,
+              RatingBar.builder(
+                initialRating: 0,
+                minRating: 0,
+                itemSize: 20.0,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                itemBuilder: (context, _) => Icon(
+                  Icons.star,
+                  color: Colors.amber,
+                ),
+                onRatingUpdate: (rating) {
+                  print(rating);
+                },
               ),
               const Text(
-                "Lorem ipsum sits dolar amet is for publishing",
+                "Just Try and Taste It,'have a good day'",
                 style: TextStyle(fontSize: 12),
               )
             ],

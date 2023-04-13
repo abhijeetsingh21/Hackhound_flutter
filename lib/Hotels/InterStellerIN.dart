@@ -27,6 +27,7 @@ class _HotelPageState extends State<HotelPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.lightBlueAccent,
       body: Stack(
         children: [
           SingleChildScrollView(

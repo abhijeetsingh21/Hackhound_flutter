@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_billing_app/MainHomePage.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_billing_app/authProvider.dart';
 
 class RegisterView extends StatefulWidget {
   static const String id = 'myRegisterPage';
@@ -23,11 +26,12 @@ class _RegisterViewState extends State<RegisterView> {
 
   @override
   Widget build(BuildContext context) {
+    final _authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
           children: [
-             Image(image: AssetImage('asset/images/bg.jpeg')),
+            Expanded(child: Image(image: AssetImage('asset/images/bg.jpeg'))),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -48,10 +52,19 @@ class _RegisterViewState extends State<RegisterView> {
                   height: 10,
                 ),
                 Text(
-                  'Start Your Writing Journey At Elunote',
+                  'Start Your Writing Journey',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
+                  ),
+                ),
+                Center(
+                  child: Text(
+                    'At Elunote',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -137,17 +150,14 @@ class _RegisterViewState extends State<RegisterView> {
                         borderRadius: BorderRadius.circular(12)),
                     child: TextButton(
                       onPressed: () async {
-                        final _user =
-                            await _auth.createUserWithEmailAndPassword(
-                                email: _email, password: _password);
-                        if (_user != null) {
-                          await _firestore.collection('user').add({
-                            // 'name': _name,
-                            'email': _email,
-                            'password': _password
-                          });
+                    try{
+                      _authProvider.createUser(_email, _password);
                           Navigator.pushNamed(context, MyHomePage.id);
-                        } else {
+                // await _auth.createUserWithEmailAndPassword(
+                //     email: _email, password: _password);
+                }
+                        catch(e) {
+                          // _prefs.setBool('isLogin', false);
                           final snackBar = SnackBar(
                             content: const Text('Yay! A SnackBar!'),
                             action: SnackBarAction(
@@ -184,7 +194,6 @@ class _RegisterViewState extends State<RegisterView> {
                         TextButton(
                           child: const Text(
                             'Login Now',
-                            
                           ),
                           onPressed: (() =>
                               Navigator.pushNamed(context, LoginView.id)),

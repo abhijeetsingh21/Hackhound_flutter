@@ -32,6 +32,8 @@ dependencies:
   dots_indicator: ^2.1.0
   firebase_auth: 
   firebase_core: 
+  flutter_rating_bar:
+  flutter_barcode_scanner: ^2.0.0
   # cloud_firestore: ^3.5.1
   flutter:
     sdk: flutter
@@ -39,7 +41,8 @@ dependencies:
   get: ^4.6.5
   splashscreen:
   http: null
-
+  shared_preferences: ^2.1.0
+  provider: ^6.0.5
 dev_dependencies:
 
   # The "flutter_lints" package below contains a set of recommended lints to

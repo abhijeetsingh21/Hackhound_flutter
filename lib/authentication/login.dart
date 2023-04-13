@@ -2,7 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_billing_app/MainHomePage.dart';
+import 'package:flutter_billing_app/authProvider.dart';
 import 'package:flutter_billing_app/authentication/register_view.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginView extends StatefulWidget {
   static const String id = 'myLoginPage';
@@ -23,12 +26,13 @@ class _LoginViewState extends State<LoginView> {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
+    final _auth = Provider.of<AuthProvider>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            Image(image: AssetImage('asset/images/bg.jpeg')),
+            Expanded(child: Image(image: AssetImage('asset/images/bg.jpeg'))),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -125,6 +129,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                 ),
+                // ignore: prefer_const_constructors
                 SizedBox(
                   height: 10,
                 ),
@@ -138,17 +143,12 @@ class _LoginViewState extends State<LoginView> {
                     child: TextButton(
                       onPressed: () async {
                         try {
-                          final _user =
-                              await _auth.signInWithEmailAndPassword(
-                                  email: _email, password: _password);
-                          if (_user != null) {
-                            Navigator.pushNamed(context, MyHomePage.id);
-                          }
+                          _auth.siginInUser(_email, _password);
+                          Navigator.pushNamed(context, MyHomePage.id);
                         } catch (error) {
                           return showDialog<void>(
                             context: context,
-                            barrierDismissible:
-                                false, // user must tap button!
+                            barrierDismissible: false, // user must tap button!
                             builder: (BuildContext context) {
                               return AlertDialog(
                                 title: const Text('AlertDialog Title'),
@@ -190,10 +190,11 @@ class _LoginViewState extends State<LoginView> {
                         TextButton(
                             child: const Text(
                               'Register Now!',
-                              style: TextStyle(color: Color.fromARGB(255, 128, 193, 246)),
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 128, 193, 246)),
                             ),
-                            onPressed: () => Navigator.pushNamed(
-                                context, RegisterView.id)),
+                            onPressed: () =>
+                                Navigator.pushNamed(context, RegisterView.id)),
                       ],
                     )),
               ],

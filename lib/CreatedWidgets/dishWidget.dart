@@ -68,6 +68,7 @@ class _DishWidgetState extends State<DishWidget> {
                         color = Colors.green;
                         // cart ='' ;
                         icon = Icons.check;
+                        
                       } else {
                         color = Colors.transparent;
                         cart = 'Cart';

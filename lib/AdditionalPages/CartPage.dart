@@ -38,6 +38,7 @@ class _cartPageState extends State<cartPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color.fromRGBO(218, 44, 67, 100),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -415,12 +416,12 @@ class _cartPageState extends State<cartPage> {
           children: [
             Text(
               "Quantity ",
-              style: TextStyle(fontSize: 14, color: black),
+              style: TextStyle(fontSize: 14, color: Colors.white),
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               decoration: BoxDecoration(
-                border: Border.all(color: black),
+                border: Border.all(color: Colors.white),
               ),
               child: Text(
                 quantity.toString(),

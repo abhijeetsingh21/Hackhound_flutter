@@ -56,8 +56,9 @@ class _MyLoginPageState extends State<MyLoginPage> {
                       hintText: 'Enter your password'),
                 ),
                 // ignore: deprecated_member_use
-                RaisedButton(
-                  textColor: Colors.red,
+                ElevatedButton(
+                  child: Text('SignIn'),
+                  // textColor: Colors.red,
                   onPressed: () async {
                     final user = await _auth.signInWithEmailAndPassword(
                         email: email, password: password);

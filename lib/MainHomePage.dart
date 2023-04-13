@@ -1,9 +1,15 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// import 'dart:ffi';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_billing_app/Hotels/InterStellerIN.dart';
 import 'package:flutter_billing_app/Hotels/HotDog.dart';
 import 'package:flutter_billing_app/Hotels/Pizza.dart';
+import 'package:flutter_billing_app/screens/myAccount.dart';
 import 'CreatedWidgets/fiveStar.dart';
 import 'CreatedWidgets/Style.dart';
 import 'AdditionalPages/CartPage.dart';
@@ -18,63 +24,153 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<DishWidget> dishList = [];
-  
+  String _scanBarcode = 'Unknown';
+
+  Future<void> startBarcodeScanStream() async {
+    FlutterBarcodeScanner.getBarcodeStreamReceiver(
+            '#ff6666', 'Cancel', true, ScanMode.BARCODE)!
+        .listen((barcode) => print(barcode));
+  }
+
+  Future<void> scanQR() async {
+    String barcodeScanRes;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666', 'Cancel', true, ScanMode.QR);
+      print(barcodeScanRes);
+    } on PlatformException {
+      barcodeScanRes = 'Failed to get platform version.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _scanBarcode = barcodeScanRes;
+    });
+  }
+
+  // Platform messages are asynchronous, so we initialize in an async method.
+  Future<void> scanBarcodeNormal() async {
+    String barcodeScanRes;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666', 'Cancel', true, ScanMode.BARCODE);
+      print(barcodeScanRes);
+    } on PlatformException {
+      barcodeScanRes = 'Failed to get platform version.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _scanBarcode = barcodeScanRes;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(218, 44, 67, 100),
-      floatingActionButton: FloatingActionButton(child: Expanded(
+      backgroundColor: Color.fromARGB(255, 240, 206, 161),
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Color.fromARGB(255, 148, 215, 151),
+          child: Expanded(
             child: Icon(
               Icons.qr_code,
               size: 39,
               color: Colors.black,
             ),
           ),
-        onPressed: (){}),
+          onPressed: () => scanQR()),
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.amber,
-        actions: [
-          Container(
-            height: 50,
-            decoration: const BoxDecoration(
-                // border: Border.all(width: 1.0),
-                // borderRadius: BorderRadius.circular(10.0),
+        backgroundColor: Color.fromARGB(255, 231, 178, 100),
+        leading: PopupMenuButton(
+            // add icon, by default "3 dot" icon
+            icon: Icon(
+              Icons.menu_outlined,
+              color: Colors.black,
+              size: 30,
+            ),
+            color: Colors.blue[50],
+            // icon: Icon(Icons.book)
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem<int>(
+                  value: 0,
+                  child: Text("My Account"),
                 ),
-            // padding: EdgeInsets.all(5.0),
-            child: SizedBox(
-              width: 100.0,
-              height: 50.0,
-              child: TextField(
-                  decoration: InputDecoration(
+                PopupMenuItem<int>(
+                  value: 1,
+                  child: Text("Settings"),
+                ),
+                PopupMenuItem<int>(
+                  value: 2,
+                  child: Text("Logout"),
+                ),
+              ];
+            },
+            onSelected: (value) {
+              if (value == 0) {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MyAccount()));
+                print("My account menu is selected.");
+              } else if (value == 1) {
+                print("Settings menu is selected.");
+              } else if (value == 2) {
+                FirebaseAuth.instance.signOut();
+                Navigator.pop(context);
+                print("Logout menu is selected.");
+              }
+            }),
+        title: Container(
+          height: 50,
+          padding: EdgeInsets.all(5.0),
+          child: TextField(
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
                 hoverColor: Colors.green,
               )),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.shopping_cart_outlined,
             ),
+            iconSize: 35.0,
+            onPressed: () {
+              Navigator.pushNamed(context, CartPage.id);
+            },
+            // size: 39,
+            color: Colors.black,
           ),
-          
-          Expanded(
-            child: IconButton(
-              icon: Icon(Icons.shopping_cart_outlined,),
-              iconSize: 39.0,
-              onPressed: () {
-                Navigator.pushNamed(context, CartPage.id);
-              },
-              // size: 39,
-              color: Colors.black,
-            ),
-          ),
-          Expanded(
-            child: Icon(
+          IconButton(
+            icon: Icon(
               Icons.person_outline_outlined,
-              size: 39,
+              size: 35.0,
+            ),
+            color: Colors.black,
+            onPressed: () {},
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.question_mark_sharp,
+              size: 29.0,
               color: Colors.black,
             ),
           ),
         ],
-        // title:
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -326,10 +422,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 20,
                 ),
                 GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, HotDogCornerPage.id);
-                    },
-                    child: placesWidget("hotel3", "Hot Dog Day")),
+                  onTap: () {
+                    Navigator.pushNamed(context, HotDogCornerPage.id);
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * .9,
+                    child: placesWidget("hotel3", "Hot Dog Day"),
+                  ),
+                ),
               ],
             ),
           ),
